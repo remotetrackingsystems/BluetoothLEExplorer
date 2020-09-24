@@ -370,7 +370,7 @@ namespace BluetoothLEExplorer.ViewModels
         /// <summary>
         /// Source for <see cref="WriteType"/>
         /// </summary>
-        private WriteTypes writeType = WriteTypes.Hex;
+        private WriteTypes writeType = WriteTypes.UTF8;
 
         /// <summary>
         /// Gets or sets how the value should be written to server

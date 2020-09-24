@@ -12,6 +12,11 @@ namespace BluetoothLEExplorer.Views
     /// <summary>
     /// Characteristic Page
     /// </summary>
+    /// 
+
+
+
+
     public sealed partial class CharacteristicPage : Page
     {
         /// <summary>
@@ -21,6 +26,7 @@ namespace BluetoothLEExplorer.Views
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;
+
         }
 
         private void WriteValue_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
@@ -63,5 +69,7 @@ namespace BluetoothLEExplorer.Views
         {
             ViewModel.SelectedDescriptor = (ObservableGattDescriptors)e.ClickedItem;
         }
+
+
     }
 }

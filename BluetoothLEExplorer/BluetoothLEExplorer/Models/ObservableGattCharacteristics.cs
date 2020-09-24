@@ -770,7 +770,7 @@ namespace BluetoothLEExplorer.Models
                     else
                     {
                         // By default, display as Hex
-                        DisplayType = DisplayTypes.Hex;
+                        DisplayType = DisplayTypes.UTF8;
                     }
                 }
             }
@@ -848,6 +848,8 @@ namespace BluetoothLEExplorer.Models
                 {
                     Value = GattConvert.ToUTF8String(rawData);
                     tempString += Value;
+                    Value = tempString;
+                    /*
                     if (tempString.Length % 60 != 0)
                     {
                         Value = tempString;
@@ -858,6 +860,7 @@ namespace BluetoothLEExplorer.Models
                         tempString += "\r\n";
                         Value = tempString;
                     }
+                    */
                 }
                 catch(Exception)
                 {
