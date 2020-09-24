@@ -210,23 +210,23 @@
                 </RelativePanel>
                 <RelativePanel VerticalAlignment="Center" Visibility="{x:Bind ViewModel.CharacteristicValueVisible, Converter={StaticResource VisibleWhenTrueConverter}}" >
                     <TextBlock Name="ReadValueText" Text="Read Value: " VerticalAlignment="Center" Width="100" Height="32" Margin="0,5,5,5"/>
-                    <Border Name="Value" Background="LightGray" RelativePanel.RightOf="ReadValueText" RelativePanel.AlignVerticalCenterWith="ReadValueText" MinWidth="75" Height="32" Margin="5" >
-                        <TextBlock Text="{x:Bind ViewModel.Characteristic.Value, Mode=OneWay}" VerticalAlignment="Center"  Margin="5,0" TextWrapping="WrapWholeWords"/>
+                    <Border Name="Value" Background="LightGray" RelativePanel.RightOf="ReadValueText" RelativePanel.AlignVerticalCenterWith="ReadValueText" MinWidth="75" Height="32" Width="691" >
+                        <TextBlock Text="{x:Bind ViewModel.Characteristic.Value, Mode=OneWay}" VerticalAlignment="Center"  Margin="5,0,-475,0" TextWrapping="WrapWholeWords"/>
                     </Border>
                     <Button Name="ReadAgainButton" Content="Read Again" Click="{x:Bind ViewModel.Characteristic.ReadValueAsync}" Visibility="{x:Bind ViewModel.CharacteristicCanBeRead, Converter={StaticResource VisibleWhenTrueConverter}}" Margin="5" Width="100" Height="32" d:LayoutOverrides="LeftMargin, RightMargin" />
 
                     <!-- The radio buttons need to be in different groups because they are all bound to the same property, so it takes care of which ones stays on vs off. If there is no group then the stackpanel container -->
                     <!-- groups them and it conflicts with the value converter -->
-                    <StackPanel Name="DisplayType" Orientation="Horizontal" Margin="5" >
-                        <RadioButton x:Name="radioButton" Content="Decimal" IsChecked="{Binding Characteristic.DisplayType, Mode=TwoWay, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=Decimal }" Width="100" GroupName="a"/>
-                        <RadioButton x:Name="radioButton1" Content="Hex" IsChecked="{Binding Characteristic.DisplayType, Mode=TwoWay, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=Hex }" Width="100" GroupName="b"/>
-                        <RadioButton x:Name="radioButton2" Content="UTF8" IsChecked="{Binding Characteristic.DisplayType, Mode=TwoWay, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=UTF8 }" Width="100" GroupName="c"/>
-                        <RadioButton x:Name="radioButton3" Content="UTF16" IsChecked="{Binding Characteristic.DisplayType, Mode=TwoWay, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=UTF16 }" Width="100" GroupName="d"/>
+                    <StackPanel Name="DisplayType" Orientation="Horizontal" >
+                        <RadioButton x:Name="radioButton" Content="Decimal" IsChecked="{Binding Characteristic.DisplayType, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=Decimal, Mode=TwoWay}" Width="100" GroupName="a"/>
+                        <RadioButton x:Name="radioButton1" Content="Hex" IsChecked="{Binding Characteristic.DisplayType, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=Hex, Mode=TwoWay}" Width="100" GroupName="b"/>
+                        <RadioButton x:Name="radioButton2" Content="UTF8" IsChecked="{Binding Characteristic.DisplayType, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=UTF8, Mode=TwoWay}" Width="100" GroupName="c"/>
+                        <RadioButton x:Name="radioButton3" Content="UTF16" IsChecked="{Binding Characteristic.DisplayType, Converter={StaticResource DisplayTypeToBooleanConverter}, ConverterParameter=UTF16, Mode=TwoWay}" Width="100" GroupName="d"/>
                     </StackPanel>
                 </RelativePanel>
             </StackPanel>
 
-            <RelativePanel Grid.Row="2" VerticalAlignment="Center" Visibility="{x:Bind ViewModel.CharacteristicCanWrite, Converter={StaticResource VisibleWhenTrueConverter}}">
+            <RelativePanel Grid.Row="5" VerticalAlignment="Top" Visibility="{x:Bind ViewModel.CharacteristicCanWrite, Converter={StaticResource VisibleWhenTrueConverter}}" Margin="0,266,40,0">
                 <TextBlock x:Name="WriteValueText" Text="Write Value: " Margin="0,5,5,5" VerticalAlignment="Center" Width="100" />
                 <TextBox x:Name="WriteValue" Text="{x:Bind ViewModel.ValueToWrite, Mode=TwoWay}" VerticalAlignment="Center" Width="100" Margin="5" 
                          RelativePanel.RightOf="WriteValueText" TextChanging="WriteValue_TextChanging" 
@@ -240,12 +240,12 @@
                     <RadioButton x:Name="radioButton6" Content="UTF8" IsChecked="{Binding WriteType, Mode=TwoWay, Converter={StaticResource WriteTypeToBooleanConverter}, ConverterParameter=UTF8 }" Width="100" GroupName="g" />
                 </StackPanel>
             </RelativePanel>
-            <TextBlock x:Name="TextProperties" Grid.Row="3" TextWrapping="WrapWholeWords">
+            <TextBlock x:Name="TextProperties" Grid.Row="5" TextWrapping="WrapWholeWords" Margin="-6,366,46,265">
                 <Run Text="Properties: " FontWeight="Bold" />
                 <Run Text="{x:Bind ViewModel.Properties}" />
             </TextBlock>
 
-            <StackPanel Grid.Row="4">
+            <StackPanel Grid.Row="5" Margin="-5,406,65,-43">
                 <CheckBox IsChecked="{x:Bind ViewModel.UseWindowsNotifications, Mode=TwoWay}" Content="Use Windows notifications" Visibility="{x:Bind ViewModel.CharacteristicCanNotifyOrIndicate, Converter={StaticResource VisibleWhenTrueConverter}}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{x:Bind ViewModel.CharacteristicCanNotify, Converter={StaticResource VisibleWhenTrueConverter}}">
                     <ToggleSwitch x:Name="NotifySwitch" Header="Notify" 
@@ -256,7 +256,7 @@
                         Margin="-60, 30, 0, 0"
                         Visibility="{x:Bind ViewModel.NotifyError, Mode=OneWay, Converter={StaticResource VisibleWhenTrueConverter}}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{x:Bind ViewModel.CharacteristicCanIndicate, Converter={StaticResource VisibleWhenTrueConverter}}">
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{x:Bind ViewModel.CharacteristicCanIndicate, Converter={StaticResource VisibleWhenTrueConverter}}">
                     <ToggleSwitch x:Name="IndicateSwitch" Header="Indicate" 
                         OffContent="Off" OnContent="On" IsOn="{x:Bind ViewModel.Indicate, Mode=TwoWay}"/>
                     <ProgressRing Visibility="{x:Bind ViewModel.IndicateProgress, Mode=OneWay, Converter={StaticResource VisibleWhenTrueConverter}}" 
@@ -264,10 +264,10 @@
                     <TextBlock x:Name="IndicateError" Text="Error setting notification" Foreground="Red"
                         Margin="-60, 30, 0, 0"
                         Visibility="{x:Bind ViewModel.IndicateError, Mode=OneWay, Converter={StaticResource VisibleWhenTrueConverter}}" />
-                </StackPanel>
+                </StackPanel>-->
             </StackPanel>
 
-            <StackPanel Grid.Row="5">
+            <StackPanel Grid.Row="5" Margin="30,457,30,0" Height="80" VerticalAlignment="Top">
                 <ListView
                         x:Name="DescriptorsListView"
                         IsItemClickEnabled="True"

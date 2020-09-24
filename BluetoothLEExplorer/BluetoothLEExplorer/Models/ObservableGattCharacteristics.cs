@@ -42,6 +42,7 @@ namespace BluetoothLEExplorer.Models
         /// Raw buffer of this value of this characteristic
         /// </summary>
         private IBuffer rawData;
+        private String tempString;
 
         /// <summary>
         /// byte array representation of the characteristic value
@@ -846,6 +847,17 @@ namespace BluetoothLEExplorer.Models
                 try
                 {
                     Value = GattConvert.ToUTF8String(rawData);
+                    tempString += Value;
+                    if (tempString.Length % 60 != 0)
+                    {
+                        Value = tempString;
+                    }
+                    else
+                    {
+                        //tempString = "";
+                        tempString += "\r\n";
+                        Value = tempString;
+                    }
                 }
                 catch(Exception)
                 {
