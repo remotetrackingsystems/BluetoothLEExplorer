@@ -18,11 +18,12 @@ using Windows.Storage.Streams;
 using GattHelper.Converters;
 using Windows.UI.Xaml.Controls;
 
-
+/*
 public static class Global
 {
     public static String tempString;
 }
+*/
 
 namespace BluetoothLEExplorer.Models
 {
@@ -49,7 +50,7 @@ namespace BluetoothLEExplorer.Models
         /// Raw buffer of this value of this characteristic
         /// </summary>
         private IBuffer rawData;
-        //public String tempString;
+        public String tempString;
 
         /// <summary>
         /// byte array representation of the characteristic value
@@ -854,9 +855,14 @@ namespace BluetoothLEExplorer.Models
                 try
                 {
                     Value = GattConvert.ToUTF8String(rawData);
-                    Global.tempString += Value;
-                    Value = Global.tempString;
-
+                    if (Global.clearFlag == true)
+                    {
+                        tempString = "";
+                        Global.clearFlag = false;
+                    }
+                    tempString += Value;
+                    Value = tempString;
+                    
 
                     /*
                     if (tempString.Length % 60 != 0)

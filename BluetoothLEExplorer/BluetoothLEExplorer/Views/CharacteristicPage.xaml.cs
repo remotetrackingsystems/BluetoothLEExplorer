@@ -9,6 +9,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
+public static class Global
+{
+    public static bool clearFlag = false;
+}
+
 namespace BluetoothLEExplorer.Views
 {
     /// <summary>
@@ -24,11 +30,12 @@ namespace BluetoothLEExplorer.Views
         /// <summary>
         /// Initializes a new instance of the <see cref="CharacteristicPage" /> class.
         /// </summary>
+        /// 
         public CharacteristicPage()
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;
-            _console.Text = "";
+            
             /*
             _scrollViewer.UpdateLayout();
             _scrollViewer.ChangeView(0.0f, double.MaxValue, 1.0f);
@@ -36,15 +43,18 @@ namespace BluetoothLEExplorer.Views
 
 
         }
-
+        
       
-
+        
         private void Clear_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            
             _console.Text = "";
-
-            Global.tempString = "";
+            Global.clearFlag = true;
+            //Global.tempString = "";
+            
         }
+        
 
         private void WriteValue_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
         {
