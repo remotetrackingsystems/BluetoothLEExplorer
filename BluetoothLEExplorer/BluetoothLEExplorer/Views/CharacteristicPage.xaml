@@ -245,8 +245,8 @@
 
             <RelativePanel VerticalAlignment="Top" Visibility="{x:Bind Converter={StaticResource VisibleWhenTrueConverter}, Path=ViewModel.CharacteristicValueVisible}" Margin="35,41,85,0" Grid.Row="5" Height="381" >
                 <!--<TextBlock x:Name="ReadValueText" Text="Read Value: " Width="100" Height="32"/>-->
-                <ScrollViewer Name="_scrollViewer" VerticalScrollBarVisibility="Auto" >
-                    <TextBlock Text="{x:Bind Mode=OneWay, Path=ViewModel.Characteristic.Value}" TextWrapping="Wrap" Height="Auto" Width="520"/>
+                <ScrollViewer Name="_scrollViewer" VerticalScrollBarVisibility="Auto"  VerticalAnchorRatio="1">
+                    <TextBox Name ="_console" Text="{ x:Bind Mode=OneWay, Path=ViewModel.Characteristic.Value}" TextWrapping="Wrap" Height="Auto" Width="520"/>
                 </ScrollViewer>
                 <!--
                 <Border x:Name="Value" Background="LightGray" RelativePanel.RightOf="ReadValueText" RelativePanel.AlignVerticalCenterWith="ReadValueText" MinWidth="75" Height="196" Width="354" >
@@ -265,6 +265,7 @@
                     </StackPanel>
                     -->
             </RelativePanel>
+            <Button x:Name="ClearButton" Content="Clear" Click="Clear_Click" Margin="357,459,0,0" RelativePanel.RightOf="WriteValue" Grid.Row="5" VerticalAlignment="Top" />
         </Grid>
 
         <RelativePanel x:Name="Notify" Background="LightBlue" Height="60"

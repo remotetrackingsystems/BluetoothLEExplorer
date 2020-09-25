@@ -16,6 +16,13 @@ using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Security.Cryptography;
 using Windows.Storage.Streams;
 using GattHelper.Converters;
+using Windows.UI.Xaml.Controls;
+
+
+public static class Global
+{
+    public static String tempString;
+}
 
 namespace BluetoothLEExplorer.Models
 {
@@ -42,7 +49,7 @@ namespace BluetoothLEExplorer.Models
         /// Raw buffer of this value of this characteristic
         /// </summary>
         private IBuffer rawData;
-        private String tempString;
+        //public String tempString;
 
         /// <summary>
         /// byte array representation of the characteristic value
@@ -847,8 +854,10 @@ namespace BluetoothLEExplorer.Models
                 try
                 {
                     Value = GattConvert.ToUTF8String(rawData);
-                    tempString += Value;
-                    Value = tempString;
+                    Global.tempString += Value;
+                    Value = Global.tempString;
+
+
                     /*
                     if (tempString.Length % 60 != 0)
                     {
@@ -879,6 +888,8 @@ namespace BluetoothLEExplorer.Models
                 }
             }
         }
+
+      
 
         /// <summary>
         /// Event to notify when this object has changed

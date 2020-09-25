@@ -24,6 +24,7 @@ namespace BluetoothLEExplorer.ViewModels
     /// </summary>
     public class CharacteristicPageViewModel : ViewModelBase
     {
+
         /// <summary>
         /// Enum to determine how to write the <see cref="ValueToWrite"/> to the server
         /// </summary>
@@ -578,6 +579,8 @@ namespace BluetoothLEExplorer.ViewModels
                 }
             }
         }
+
+      
 
         /// <summary>
         /// Write the value to the server

@@ -3,6 +3,8 @@
 // </copyright>
 //----------------------------------------------------------------------------------------------
 using BluetoothLEExplorer.Models;
+using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -26,7 +28,22 @@ namespace BluetoothLEExplorer.Views
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;
+            _console.Text = "";
+            /*
+            _scrollViewer.UpdateLayout();
+            _scrollViewer.ChangeView(0.0f, double.MaxValue, 1.0f);
+            */
 
+
+        }
+
+      
+
+        private void Clear_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            _console.Text = "";
+
+            Global.tempString = "";
         }
 
         private void WriteValue_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
@@ -69,6 +86,8 @@ namespace BluetoothLEExplorer.Views
         {
             ViewModel.SelectedDescriptor = (ObservableGattDescriptors)e.ClickedItem;
         }
+
+        
 
 
     }
