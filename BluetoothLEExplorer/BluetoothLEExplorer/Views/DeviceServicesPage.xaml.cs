@@ -35,6 +35,11 @@ namespace BluetoothLEExplorer.Views
         {
             ViewModel.SelectedCharacteristic = (ObservableGattCharacteristics)e.ClickedItem;
         }        
+
+        private void charVis()
+        {
+            
+        }
     }
 
     public class BackgroundColorConverter : IValueConverter

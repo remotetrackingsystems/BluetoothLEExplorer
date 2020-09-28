@@ -553,7 +553,11 @@ namespace BluetoothLEExplorer.Models
                             System.Diagnostics.Debug.WriteLine(debugMsg + "GetGattServiceAsync SUCCESS");
                             foreach (var serv in result.Services)
                             {
-                                Services.Add(new ObservableGattDeviceService(serv));
+                                if(serv.Uuid.ToString() == "49535343-fe7d-4ae5-8fa9-9fafd205e455")
+                                {
+                                    Services.Add(new ObservableGattDeviceService(serv));
+                                }
+                                
                             }
 
                             ServiceCount = Services.Count();

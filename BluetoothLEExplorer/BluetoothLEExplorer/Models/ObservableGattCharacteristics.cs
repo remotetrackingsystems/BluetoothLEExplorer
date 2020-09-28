@@ -69,7 +69,10 @@ namespace BluetoothLEExplorer.Models
         {
             get
             {
+               
                 return characteristic;
+               
+                
             }
 
             set
@@ -110,7 +113,7 @@ namespace BluetoothLEExplorer.Models
         /// <summary>
         /// Source for <see cref="IsNotifySet"/>
         /// </summary>
-        private bool isNotifySet = false;
+        private bool isNotifySet = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether notify is set
@@ -222,7 +225,15 @@ namespace BluetoothLEExplorer.Models
         {
             get
             {
-                return name;
+                if(name == "49535343-1e4d-4bd9-ba61-23c647249616")
+                {
+                    return name;
+                }
+                else
+                {
+                    return "";
+                }
+                
             }
 
             set
@@ -365,8 +376,18 @@ namespace BluetoothLEExplorer.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ObservableGattCharacteristics_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        /// 
+        bool notifyFlag = false;
+        private async void ObservableGattCharacteristics_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if(notifyFlag == false)
+            {
+                var result = await
+                        Characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(
+                            GattClientCharacteristicConfigurationDescriptorValue.Notify);
+                notifyFlag = true;
+            }
+
             if (e.PropertyName == "DisplayType")
             {
                 SetValue();
@@ -577,8 +598,10 @@ namespace BluetoothLEExplorer.Models
         /// <returns>Set notify task</returns>
         public async Task<bool> SetNotify()
         {
+            
             if (IsNotifySet == true)
             {
+                
                 // already set
                 return true;
             }
@@ -860,11 +883,15 @@ namespace BluetoothLEExplorer.Models
                         tempString = "";
                         Global.clearFlag = false;
                     }
+                    else
+                    {
+                        tempString += Value;
+                        Value = tempString;
+                    }
                     
                     
                     
-                    tempString += Value;
-                    Value = tempString;
+                    
                     
 
                     

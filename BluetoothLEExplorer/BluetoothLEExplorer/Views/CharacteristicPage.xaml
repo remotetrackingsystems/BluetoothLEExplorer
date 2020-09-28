@@ -213,16 +213,19 @@
                 <Button x:Name="WriteButton" Content="Write" Click="{x:Bind ViewModel.WriteValue}" Margin="5" RelativePanel.RightOf="WriteValue" />
                 <!-- The radio buttons need to be in different groups because they are all bound to the same property, so it takes care of which ones stays on vs off. If there is no group then the stackpanel container -->
                 <!-- groups them and it conflicts with the value converter -->
+                <!--
                 <StackPanel Name="WriteType" Orientation="Horizontal" Margin="5">
                     <RadioButton x:Name="radioButton4" Content="Decimal" IsChecked="{Binding WriteType, Mode=TwoWay, Converter={StaticResource WriteTypeToBooleanConverter}, ConverterParameter=Decimal }" Width="100" GroupName="e" />
                     <RadioButton x:Name="radioButton5" Content="Hex" IsChecked="{Binding WriteType, Mode=TwoWay, Converter={StaticResource WriteTypeToBooleanConverter}, ConverterParameter=Hex }" Width="100" GroupName="f" Checked="radioButton5_Checked" Unchecked="radioButton5_Unchecked" />
                     <RadioButton x:Name="radioButton6" Content="UTF8" IsChecked="{Binding WriteType, Mode=TwoWay, Converter={StaticResource WriteTypeToBooleanConverter}, ConverterParameter=UTF8 }" Width="100" GroupName="g" />
                 </StackPanel>
+                -->
             </RelativePanel>
 
 
             <StackPanel Grid.Row="5" Margin="25,541,95,-76">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{x:Bind ViewModel.CharacteristicCanNotify, Converter={StaticResource VisibleWhenTrueConverter}}">
+                    <!--
                     <ToggleSwitch x:Name="NotifySwitch" Header="Notify" 
                         OffContent="Off" OnContent="On" IsOn="{x:Bind Mode=TwoWay, Path=ViewModel.Notify}" />
                     <ProgressRing Visibility="{x:Bind Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay, Path=ViewModel.NotifyProgress}" 
@@ -230,6 +233,7 @@
                     <TextBlock Text="Error setting notification" Foreground="Red" 
                         Margin="-60, 30, 0, 0"
                         Visibility="{x:Bind Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay, Path=ViewModel.NotifyError}" />
+                    -->
                 </StackPanel>
                 <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{x:Bind ViewModel.CharacteristicCanIndicate, Converter={StaticResource VisibleWhenTrueConverter}}">
                     <ToggleSwitch x:Name="IndicateSwitch" Header="Indicate" 

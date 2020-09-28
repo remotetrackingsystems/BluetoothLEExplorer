@@ -112,7 +112,14 @@ namespace BluetoothLEExplorer.Models
         {
             get
             {
-                return name;
+                if (name == "49535343-1e4d-4bd9-ba61-23c647249616")
+                {
+                    return name;
+                }
+                else
+                {
+                    return "";
+                }
             }
 
             set
@@ -203,8 +210,10 @@ namespace BluetoothLEExplorer.Models
         private async void GetAllCharacteristics()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("ObservableGattDeviceService::getAllCharacteristics: ");
+            sb.Append("ObservableGattDeviceService::getAllCharacteristics: ");            
             sb.Append(Name);
+            
+            
 
             try
             {
@@ -231,7 +240,10 @@ namespace BluetoothLEExplorer.Models
                     Debug.WriteLine(sb);
                     foreach (GattCharacteristic gattchar in result.Characteristics)
                     {
-                        Characteristics.Add(new ObservableGattCharacteristics(gattchar, this));
+                        if(gattchar.Uuid.ToString() == "49535343-1e4d-4bd9-ba61-23c647249616")
+                        {
+                            Characteristics.Add(new ObservableGattCharacteristics(gattchar, this));
+                        }
                     }
                 }
                 else if (result.Status == GattCommunicationStatus.Unreachable)

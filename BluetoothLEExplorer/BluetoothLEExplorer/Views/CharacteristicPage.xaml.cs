@@ -36,10 +36,7 @@ namespace BluetoothLEExplorer.Views
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;
             
-            /*
-            _scrollViewer.UpdateLayout();
-            _scrollViewer.ChangeView(0.0f, double.MaxValue, 1.0f);
-            */
+            
 
 
         }
@@ -51,7 +48,6 @@ namespace BluetoothLEExplorer.Views
             
             _console.Text = "";
             Global.clearFlag = true;
-            //Global.tempString = "";
             
         }
         

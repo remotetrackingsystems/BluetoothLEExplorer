@@ -29,7 +29,7 @@
         
 
         <Controls:HamburgerMenu.PrimaryButtons>
-            <!--  mainpage button  -->
+            
             <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:Discover" >
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48" Height="48"
@@ -38,6 +38,7 @@
                                Text="Discover and Pair" TextDecorations="{x:Bind ViewModel.IsCentralRoleSupported, Converter={StaticResource StrikethroughConverter}}" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
+            <!--
             <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:VirtualPeripheralPage" >
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48" Height="48"
@@ -52,8 +53,9 @@
                                 Symbol="Home" />
                     <TextBlock Margin="12,0,0,0" VerticalAlignment="Center"
                                Text="Virtual Keyboard" TextDecorations="{x:Bind ViewModel.IsPeripheralRoleSupported, Converter={StaticResource StrikethroughConverter}}" />
-                </StackPanel>
+                </StackPanel>            
             </Controls:HamburgerButtonInfo>
+            -->
             <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:Beacon" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48" Height="48"
@@ -65,7 +67,7 @@
         </Controls:HamburgerMenu.PrimaryButtons>
 
         <Controls:HamburgerMenu.SecondaryButtons>
-            <!--  settingspage button  -->
+           
             <Controls:HamburgerButtonInfo x:Name="SettingsButton" PageParameter="0"
                                           PageType="views:SettingsPage">
                 <Controls:HamburgerButtonInfo.NavigationTransitionInfo>
@@ -81,6 +83,6 @@
         </Controls:HamburgerMenu.SecondaryButtons>
 
     </Controls:HamburgerMenu>
-
+    
 </Page>
 

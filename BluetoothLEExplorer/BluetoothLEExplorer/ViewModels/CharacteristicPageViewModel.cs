@@ -451,6 +451,8 @@ namespace BluetoothLEExplorer.ViewModels
             {
             }
 
+            
+
             Notify = Characteristic.IsNotifySet;
             Indicate = Characteristic.IsIndicateSet;
 
