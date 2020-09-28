@@ -142,9 +142,9 @@
                                                 <Run Text=" - " />
                                                 <Run x:Name="CharacteristicHandleText" Text="Handle: " />
                                                 <Run Text="{x:Bind Characteristic.AttributeHandle, Mode=OneWay}" FontWeight="Bold" />
-                                                <Run Text=" - " />
+                                                <Run Text=" - " /><!--
                                                 <Run x:Name="CharValueText" Text="Value: " />
-                                                <Run Text="{x:Bind Value, Mode=OneWay}" FontWeight="Bold" />
+                                                <Run Text="{x:Bind Value, Mode=OneWay}" FontWeight="Bold" />-->
                                             </TextBlock>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>

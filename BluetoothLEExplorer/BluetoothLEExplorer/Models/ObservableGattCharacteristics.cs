@@ -860,22 +860,14 @@ namespace BluetoothLEExplorer.Models
                         tempString = "";
                         Global.clearFlag = false;
                     }
+                    
+                    
+                    
                     tempString += Value;
                     Value = tempString;
                     
 
-                    /*
-                    if (tempString.Length % 60 != 0)
-                    {
-                        Value = tempString;
-                    }
-                    else
-                    {
-                        //tempString = "";
-                        tempString += "\r\n";
-                        Value = tempString;
-                    }
-                    */
+                    
                 }
                 catch(Exception)
                 {

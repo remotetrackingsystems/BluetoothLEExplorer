@@ -44,7 +44,7 @@ namespace BluetoothLEExplorer.Views
 
         }
         
-      
+        
         
         private void Clear_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
