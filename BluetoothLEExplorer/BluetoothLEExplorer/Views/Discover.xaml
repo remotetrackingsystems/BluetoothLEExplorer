@@ -238,9 +238,11 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+                                <!--
                                 <Button Name="Pair" Click="{x:Bind DoInAppPairing}" HorizontalAlignment="Center">
                                     Pair
                                 </Button>
+                                -->
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
