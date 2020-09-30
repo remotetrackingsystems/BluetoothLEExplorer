@@ -194,10 +194,12 @@
 
             <TextBlock Grid.Row="0"  >
                 <Run Text="{x:Bind ViewModel.DeviceName}" />
+                <!--
                 <Run Text=" - " />
                 <Run Text="{x:Bind ViewModel.Characteristic.Parent.Name}" />
                 <Run Text=" - " />
                 <Run Text="{x:Bind ViewModel.Characteristic.Name}" />
+                -->
             </TextBlock>
 
             <!--<StackPanel Grid.Row="1" Orientation="Horizontal"  >-->
@@ -211,6 +213,7 @@
                          RelativePanel.RightOf="WriteValueText" TextChanging="WriteValue_TextChanging" 
                          />
                 <Button x:Name="WriteButton" Content="Write" Click="{x:Bind ViewModel.WriteValue}" Margin="5" RelativePanel.RightOf="WriteValue" />
+                <Button x:Name="ClearButton" Content="Clear" Click="Clear_Click" Margin="5" RelativePanel.RightOf="WriteButton"   />
                 <!-- The radio buttons need to be in different groups because they are all bound to the same property, so it takes care of which ones stays on vs off. If there is no group then the stackpanel container -->
                 <!-- groups them and it conflicts with the value converter -->
                 <!--
@@ -269,7 +272,7 @@
                     </StackPanel>
                     -->
             </RelativePanel>
-            <Button x:Name="ClearButton" Content="Clear" Click="Clear_Click" Margin="357,459,0,0" RelativePanel.RightOf="WriteValue" Grid.Row="5" VerticalAlignment="Top" />
+            
         </Grid>
 
         <RelativePanel x:Name="Notify" Background="LightBlue" Height="60"

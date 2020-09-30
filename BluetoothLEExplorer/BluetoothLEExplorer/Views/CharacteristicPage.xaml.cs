@@ -35,8 +35,8 @@ namespace BluetoothLEExplorer.Views
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;
-            
-            
+            _console.Text = "";
+
 
 
         }

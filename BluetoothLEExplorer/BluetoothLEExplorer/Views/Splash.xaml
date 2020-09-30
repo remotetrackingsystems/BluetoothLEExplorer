@@ -23,7 +23,7 @@
             <Viewbox x:Name="splashImage"
                      Width="{Binding ActualWidth, ElementName=MyCanvas, Mode=OneWay}"
                      Height="{Binding ActualHeight, ElementName=MyCanvas, Mode=OneWay}">
-                <Image Source="ms-appx:///Assets/SplashScreen.png" />
+                <Image Source="ms-appx:///Assets/SplashScreen.png" Height="471" Width="875" />
             </Viewbox>
         </Canvas>
 

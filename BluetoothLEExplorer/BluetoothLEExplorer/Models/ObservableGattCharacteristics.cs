@@ -888,6 +888,10 @@ namespace BluetoothLEExplorer.Models
                         tempString += Value;
                         Value = tempString;
                     }
+                    if(tempString.Length >= int.MaxValue - 100)
+                    {
+                        tempString = "";
+                    }
                     
                     
                     
@@ -898,7 +902,7 @@ namespace BluetoothLEExplorer.Models
                 }
                 catch(Exception)
                 {
-                    Value = "Error: Invalid UTF8 String";
+                    //Value = "Error: Invalid UTF8 String";
                 }
             }
             else if (DisplayType == DisplayTypes.UTF16)
