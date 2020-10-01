@@ -208,12 +208,14 @@
 
 
             <RelativePanel Grid.Row="5" VerticalAlignment="Top" Visibility="{x:Bind ViewModel.CharacteristicCanWrite, Converter={StaticResource VisibleWhenTrueConverter}}" Margin="15,452,105,0" Height="99">
-                <TextBlock x:Name="WriteValueText" Text="Write Value: " Margin="0,5,5,5" VerticalAlignment="Center" Width="100" />
+                <TextBlock x:Name="WriteValueText" Text="Send Value: " Margin="0,5,5,5" VerticalAlignment="Center" Width="100" />
                 <TextBox x:Name="WriteValue" Text="{x:Bind ViewModel.ValueToWrite, Mode=TwoWay}" VerticalAlignment="Center" Width="100" Margin="5" 
                          RelativePanel.RightOf="WriteValueText" TextChanging="WriteValue_TextChanging" 
                          />
-                <Button x:Name="WriteButton" Content="Write" Click="{x:Bind ViewModel.WriteValue}" Margin="5" RelativePanel.RightOf="WriteValue" />
-                <Button x:Name="ClearButton" Content="Clear" Click="Clear_Click" Margin="5" RelativePanel.RightOf="WriteButton"   />
+                <Button x:Name="WriteButton" Content="Send" Click="{x:Bind ViewModel.WriteValue}" Margin="5" RelativePanel.RightOf="WriteValue" />
+                <Button x:Name="ConfigButton" Content="Config" Click="{x:Bind ViewModel.WriteConfig}" Margin="5" RelativePanel.RightOf="WriteButton"   />
+                <Button x:Name="ClearButton" Content="Clear" Click="Clear_Click" Margin="5" RelativePanel.RightOf="ConfigButton"   />
+                
                 <!-- The radio buttons need to be in different groups because they are all bound to the same property, so it takes care of which ones stays on vs off. If there is no group then the stackpanel container -->
                 <!-- groups them and it conflicts with the value converter -->
                 <!--

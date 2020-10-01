@@ -582,7 +582,156 @@ namespace BluetoothLEExplorer.ViewModels
             }
         }
 
-      
+
+        public async void WritePassword()
+        {
+
+            IBuffer writeBuffer = null;
+
+            if (WriteType == WriteTypes.Decimal)
+            {
+                DataWriter writer = new DataWriter();
+                writer.ByteOrder = ByteOrder.LittleEndian;
+                writer.WriteInt32(Int32.Parse(ValueToWrite));
+                writeBuffer = writer.DetachBuffer();
+            }
+            else if (WriteType == WriteTypes.Hex)
+            {
+                try
+                {
+                    // pad the value if we've received odd number of bytes
+                    if (ValueToWrite.Length % 2 == 1)
+                    {
+                        writeBuffer = GattConvert.ToIBufferFromHexString("0" + ValueToWrite);
+                    }
+                    else
+                    {
+                        writeBuffer = GattConvert.ToIBufferFromHexString(ValueToWrite);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageDialog dialog = new MessageDialog(ex.Message, "Error");
+                    await dialog.ShowAsync();
+                    return;
+                }
+
+            }
+            else if (WriteType == WriteTypes.UTF8)
+            {
+
+
+                writeBuffer = CryptographicBuffer.ConvertStringToBinary("rtsrts1",
+             BinaryStringEncoding.Utf8);
+
+            }
+
+            try
+            {
+                // BT_Code: Writes the value from the buffer to the characteristic.
+                GattCommunicationStatus result = await Characteristic.Characteristic.WriteValueAsync(writeBuffer);
+
+                if (result == GattCommunicationStatus.Unreachable)
+                {
+                    NotifyUser.Insert(0, "Unable to write data - Device unreachable");
+                }
+                else if (result == GattCommunicationStatus.ProtocolError)
+                {
+                    NotifyUser.Insert(0, "Unable to write data - Protocol error");
+                }
+            }
+            catch (Exception ex) when ((uint)ex.HResult == 0x80650003 || (uint)ex.HResult == 0x80070005)
+            {
+                // E_BLUETOOTH_ATT_WRITE_NOT_PERMITTED or E_ACCESSDENIED
+                // This usually happens when a device reports that it support writing, but it actually doesn't.
+                NotifyUser.Insert(0, "Error writing to characteristic. This usually happens when a device reports that it support writing, but it actually doesn't.");
+            }
+            catch (Exception ex)
+            {
+                MessageDialog dialog = new MessageDialog(ex.Message, "Error");
+                await dialog.ShowAsync();
+            }
+
+
+        }
+
+        public async void WriteConfig()
+        {
+            
+                IBuffer writeBuffer = null;
+
+                if (WriteType == WriteTypes.Decimal)
+                {
+                    DataWriter writer = new DataWriter();
+                    writer.ByteOrder = ByteOrder.LittleEndian;
+                    writer.WriteInt32(Int32.Parse(ValueToWrite));
+                    writeBuffer = writer.DetachBuffer();
+                }
+                else if (WriteType == WriteTypes.Hex)
+                {
+                    try
+                    {
+                        // pad the value if we've received odd number of bytes
+                        if (ValueToWrite.Length % 2 == 1)
+                        {
+                            writeBuffer = GattConvert.ToIBufferFromHexString("0" + ValueToWrite);
+                        }
+                        else
+                        {
+                            writeBuffer = GattConvert.ToIBufferFromHexString(ValueToWrite);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageDialog dialog = new MessageDialog(ex.Message, "Error");
+                        await dialog.ShowAsync();
+                        return;
+                    }
+
+                }
+                else if (WriteType == WriteTypes.UTF8)
+                {
+
+
+                    writeBuffer = CryptographicBuffer.ConvertStringToBinary("+",
+                 BinaryStringEncoding.Utf8);
+
+                }
+
+                try
+                {
+                    // BT_Code: Writes the value from the buffer to the characteristic.
+                    GattCommunicationStatus result = await Characteristic.Characteristic.WriteValueAsync(writeBuffer);
+                    
+                    if (result == GattCommunicationStatus.Unreachable)
+                    {
+                        NotifyUser.Insert(0, "Unable to write data - Device unreachable");
+                    }
+                    else if (result == GattCommunicationStatus.ProtocolError)
+                    {
+                        NotifyUser.Insert(0, "Unable to write data - Protocol error");
+                    }
+                    else if(result == GattCommunicationStatus.Success)
+                    {
+                        WritePassword();
+                    }
+                }
+                catch (Exception ex) when ((uint)ex.HResult == 0x80650003 || (uint)ex.HResult == 0x80070005)
+                {
+                    // E_BLUETOOTH_ATT_WRITE_NOT_PERMITTED or E_ACCESSDENIED
+                    // This usually happens when a device reports that it support writing, but it actually doesn't.
+                    NotifyUser.Insert(0, "Error writing to characteristic. This usually happens when a device reports that it support writing, but it actually doesn't.");
+                }
+                catch (Exception ex)
+                {
+                    MessageDialog dialog = new MessageDialog(ex.Message, "Error");
+                    await dialog.ShowAsync();
+                }
+            
+            
+        }
+
+
 
         /// <summary>
         /// Write the value to the server
@@ -624,8 +773,11 @@ namespace BluetoothLEExplorer.ViewModels
                 }
                 else if (WriteType == WriteTypes.UTF8)
                 {
-                    writeBuffer = CryptographicBuffer.ConvertStringToBinary(ValueToWrite,
-                    BinaryStringEncoding.Utf8);
+                    
+                    
+                        writeBuffer = CryptographicBuffer.ConvertStringToBinary(ValueToWrite + 'X',
+                     BinaryStringEncoding.Utf8);
+                    
                 }
 
                 try

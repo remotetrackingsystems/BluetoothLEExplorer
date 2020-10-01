@@ -8,11 +8,13 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BluetoothLEExplorer.ViewModels;
 
 
 public static class Global
 {
     public static bool clearFlag = false;
+    public static bool configFlag = false;
 }
 
 namespace BluetoothLEExplorer.Views
@@ -31,6 +33,8 @@ namespace BluetoothLEExplorer.Views
         /// Initializes a new instance of the <see cref="CharacteristicPage" /> class.
         /// </summary>
         /// 
+
+
         public CharacteristicPage()
         {
             InitializeComponent();
@@ -50,6 +54,14 @@ namespace BluetoothLEExplorer.Views
             Global.clearFlag = true;
             
         }
+
+        /*
+        private void Config_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Global.configFlag = true;
+
+        }
+        */
         
 
         private void WriteValue_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
