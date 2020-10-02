@@ -56,6 +56,9 @@ namespace BluetoothLEExplorer.ViewModels
         /// </summary>
         private ObservableGattCharacteristics characteristic = GattSampleContext.Context.SelectedCharacteristic;
 
+
+        //private ObservableBluetoothLEDevice dev;
+
         /// <summary>
         /// Gets or sets the characteristic that this view model wraps
         /// </summary>
@@ -115,7 +118,20 @@ namespace BluetoothLEExplorer.ViewModels
                 Set(ref properties, value);
             }
         }
-        
+
+
+        /*
+        public bool IsCon
+        {
+            get
+            {
+                return dev.IsConnected;
+            }
+
+
+        }
+        */
+
         /// <summary>
         /// Source for <see cref="Notify"/>
         /// </summary>
@@ -621,7 +637,7 @@ namespace BluetoothLEExplorer.ViewModels
             {
 
 
-                writeBuffer = CryptographicBuffer.ConvertStringToBinary("rtsrts1",
+                writeBuffer = CryptographicBuffer.ConvertStringToBinary("rtsrts1X",
              BinaryStringEncoding.Utf8);
 
             }
@@ -711,10 +727,13 @@ namespace BluetoothLEExplorer.ViewModels
                     {
                         NotifyUser.Insert(0, "Unable to write data - Protocol error");
                     }
+                    /*
                     else if(result == GattCommunicationStatus.Success)
                     {
                         WritePassword();
                     }
+                    */
+                    
                 }
                 catch (Exception ex) when ((uint)ex.HResult == 0x80650003 || (uint)ex.HResult == 0x80070005)
                 {
@@ -778,6 +797,7 @@ namespace BluetoothLEExplorer.ViewModels
                         writeBuffer = CryptographicBuffer.ConvertStringToBinary(ValueToWrite + 'X',
                      BinaryStringEncoding.Utf8);
                     
+                    
                 }
 
                 try
@@ -793,6 +813,7 @@ namespace BluetoothLEExplorer.ViewModels
                     {
                         NotifyUser.Insert(0, "Unable to write data - Protocol error");
                     }
+                    
                 }
                 catch (Exception ex) when ((uint)ex.HResult == 0x80650003 || (uint)ex.HResult == 0x80070005)
                 {

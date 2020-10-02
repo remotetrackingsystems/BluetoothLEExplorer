@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BluetoothLEExplorer.Services.GattUuidHelpers;
 using BluetoothLEExplorer.Services.Other;
+using BluetoothLEExplorer.Models;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Security.Cryptography;
@@ -61,7 +62,7 @@ namespace BluetoothLEExplorer.Models
         /// Source for <see cref="Characteristic"/>
         /// </summary>
         private GattCharacteristic characteristic;
-
+        
         /// <summary>
         /// Gets or sets the characteristic this class wraps
         /// </summary>
@@ -85,6 +86,7 @@ namespace BluetoothLEExplorer.Models
             }
         }
 
+        
         /// <summary>
         /// Source for <see cref="IsIndicateSet"/>
         /// </summary>
@@ -892,6 +894,16 @@ namespace BluetoothLEExplorer.Models
                     {
                         tempString = "";
                     }
+                    
+                    /*
+                    if(dev.IsConnected == false)
+                    {
+                        Value = "DISCONNECTED";
+                    }
+                    */
+
+                    
+                    
                     
                     
                     

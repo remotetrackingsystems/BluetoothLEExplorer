@@ -16,6 +16,7 @@
 
     <Page.DataContext>
         <vm:CharacteristicPageViewModel x:Name="ViewModel" />
+       
     </Page.DataContext>
 
     <Page.Resources>
@@ -209,13 +210,17 @@
 
             <RelativePanel Grid.Row="5" VerticalAlignment="Top" Visibility="{x:Bind ViewModel.CharacteristicCanWrite, Converter={StaticResource VisibleWhenTrueConverter}}" Margin="15,452,105,0" Height="99">
                 <TextBlock x:Name="WriteValueText" Text="Send Value: " Margin="0,5,5,5" VerticalAlignment="Center" Width="100" />
+                
                 <TextBox x:Name="WriteValue" Text="{x:Bind ViewModel.ValueToWrite, Mode=TwoWay}" VerticalAlignment="Center" Width="100" Margin="5" 
                          RelativePanel.RightOf="WriteValueText" TextChanging="WriteValue_TextChanging" 
                          />
                 <Button x:Name="WriteButton" Content="Send" Click="{x:Bind ViewModel.WriteValue}" Margin="5" RelativePanel.RightOf="WriteValue" />
                 <Button x:Name="ConfigButton" Content="Config" Click="{x:Bind ViewModel.WriteConfig}" Margin="5" RelativePanel.RightOf="WriteButton"   />
                 <Button x:Name="ClearButton" Content="Clear" Click="Clear_Click" Margin="5" RelativePanel.RightOf="ConfigButton"   />
-                
+                <!--
+                <TextBlock x:Name="Disconnect" Text ="DISCONNECTED" Margin="5" VerticalAlignment="Center" Width="100" RelativePanel.RightOf="ClearButton" 
+                Visibility="{x:Bind Converter={StaticResource VisibleWhenFalseConverter}, Mode=OneWay, Path=ViewModel.IsCon}" />
+                -->
                 <!-- The radio buttons need to be in different groups because they are all bound to the same property, so it takes care of which ones stays on vs off. If there is no group then the stackpanel container -->
                 <!-- groups them and it conflicts with the value converter -->
                 <!--
@@ -256,6 +261,7 @@
                 <!--<TextBlock x:Name="ReadValueText" Text="Read Value: " Width="100" Height="32"/>-->
                 <ScrollViewer Name="_scrollViewer" VerticalScrollBarVisibility="Auto"  VerticalAnchorRatio="1">
                     <TextBox Name ="_console" Text="{ x:Bind Mode=OneWay, Path=ViewModel.Characteristic.Value}" TextWrapping="Wrap" Height="Auto" Width="520"/>
+                    
                 </ScrollViewer>
                 <!--
                 <Border x:Name="Value" Background="LightGray" RelativePanel.RightOf="ReadValueText" RelativePanel.AlignVerticalCenterWith="ReadValueText" MinWidth="75" Height="196" Width="354" >

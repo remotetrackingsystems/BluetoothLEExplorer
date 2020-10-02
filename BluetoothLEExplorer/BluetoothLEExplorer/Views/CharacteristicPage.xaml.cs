@@ -35,6 +35,7 @@ namespace BluetoothLEExplorer.Views
         /// 
 
 
+
         public CharacteristicPage()
         {
             InitializeComponent();
