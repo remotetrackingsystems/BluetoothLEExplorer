@@ -242,7 +242,10 @@ namespace BluetoothLEExplorer.Models
                     {
                         if(gattchar.Uuid.ToString() == "49535343-1e4d-4bd9-ba61-23c647249616")
                         {
+                            Characteristics.Clear();
+                            
                             Characteristics.Add(new ObservableGattCharacteristics(gattchar, this));
+                            
                         }
                     }
                 }

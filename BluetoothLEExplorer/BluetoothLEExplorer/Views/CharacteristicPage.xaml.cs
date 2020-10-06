@@ -15,6 +15,7 @@ public static class Global
 {
     public static bool clearFlag = false;
     public static bool configFlag = false;
+    public static String tempString;
 }
 
 namespace BluetoothLEExplorer.Views
@@ -40,7 +41,7 @@ namespace BluetoothLEExplorer.Views
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;
-            _console.Text = "";
+            //_console.Text = "";
 
 
 
@@ -53,6 +54,7 @@ namespace BluetoothLEExplorer.Views
             
             _console.Text = "";
             Global.clearFlag = true;
+            //Global.tempString = "";
             
         }
 

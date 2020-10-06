@@ -153,7 +153,7 @@
                     <Button Content="{x:Bind ViewModel.IsEnumerating, Mode=OneWay, Converter={StaticResource EnumerationBoolToStringConverter}}" Click="{x:Bind ViewModel.ToggleEnumeration}" />
                     <TextBlock Text="Enumeration finished" Visibility="{x:Bind ViewModel.EnumerationFinished, Mode=OneWay, Converter={StaticResource VisibleWhenTrueConverter}}" Margin="10,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
-                <CheckBox Content="Continuous Enumeration" IsChecked="{x:Bind ViewModel.ContinuousEnumeration, Mode=TwoWay}" />
+                <!--<CheckBox Content="Continuous Enumeration" IsChecked="{x:Bind ViewModel.ContinuousEnumeration, Mode=TwoWay}" />-->
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5">
                     <TextBlock Text="Filter: " VerticalAlignment="Center" Margin="0, 0, 5, 0"/>

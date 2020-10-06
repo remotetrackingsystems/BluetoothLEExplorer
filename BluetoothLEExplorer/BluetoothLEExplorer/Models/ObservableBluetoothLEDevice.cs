@@ -492,6 +492,7 @@ namespace BluetoothLEExplorer.Models
         /// <returns>Connection task</returns>
         public async Task<bool> Connect()
         {
+            
             bool ret = false;
             string debugMsg = String.Format("Connect: ");
 
@@ -531,7 +532,7 @@ namespace BluetoothLEExplorer.Models
 
                         IsPaired = DeviceInfo.Pairing.IsPaired;
                         IsConnected = BluetoothLEDevice.ConnectionStatus == BluetoothConnectionStatus.Connected;
-
+                        
                         UpdateSecureConnectionStatus();
 
                         Name = BluetoothLEDevice.Name;
@@ -544,7 +545,8 @@ namespace BluetoothLEExplorer.Models
                         var GetGattServicesAsyncTask = Task.Run(() => BluetoothLEDevice.GetGattServicesAsync(cacheMode), GetGattServicesAsyncTokenSource.Token);
 
                         result = await GetGattServicesAsyncTask.Result;
-
+                        
+                        Services.Clear();
                         if (result.Status == GattCommunicationStatus.Success)
                         {
                             // In case we connected before, clear the service list and recreate it
@@ -555,7 +557,9 @@ namespace BluetoothLEExplorer.Models
                             {
                                 if(serv.Uuid.ToString() == "49535343-fe7d-4ae5-8fa9-9fafd205e455")
                                 {
+                                    
                                     Services.Add(new ObservableGattDeviceService(serv));
+                                    
                                 }
                                 
                             }

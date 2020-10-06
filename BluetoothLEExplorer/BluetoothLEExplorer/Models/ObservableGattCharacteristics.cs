@@ -51,7 +51,7 @@ namespace BluetoothLEExplorer.Models
         /// Raw buffer of this value of this characteristic
         /// </summary>
         private IBuffer rawData;
-        public String tempString;
+        private String tempString;
 
         /// <summary>
         /// byte array representation of the characteristic value
@@ -340,14 +340,14 @@ namespace BluetoothLEExplorer.Models
         /// <param name="parent">The parent service that wraps this characteristic</param>
         public ObservableGattCharacteristics(GattCharacteristic characteristic, ObservableGattDeviceService parent)
         {
+            
             Characteristic = characteristic;
             Parent = parent;
             Name = GattCharacteristicUuidHelper.ConvertUuidToName(Characteristic.Uuid);
             UUID = Characteristic.Uuid.ToString();
-
+            tempString = "";
             ReadValueAsync();
             GetAllDescriptors();
-
             characteristic.ValueChanged += Characteristic_ValueChanged;
             PropertyChanged += ObservableGattCharacteristics_PropertyChanged;
         }
@@ -382,6 +382,7 @@ namespace BluetoothLEExplorer.Models
         bool notifyFlag = false;
         private async void ObservableGattCharacteristics_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            
             if(notifyFlag == false)
             {
                 var result = await
@@ -389,6 +390,7 @@ namespace BluetoothLEExplorer.Models
                             GattClientCharacteristicConfigurationDescriptorValue.Notify);
                 notifyFlag = true;
             }
+            
 
             if (e.PropertyName == "DisplayType")
             {
@@ -601,6 +603,8 @@ namespace BluetoothLEExplorer.Models
         public async Task<bool> SetNotify()
         {
             
+            
+            
             if (IsNotifySet == true)
             {
                 
@@ -714,6 +718,7 @@ namespace BluetoothLEExplorer.Models
                 Windows.UI.Core.CoreDispatcherPriority.Normal,
                 () =>
             {
+                
                 SetValue(args.CharacteristicValue);
             });
         }
@@ -735,6 +740,7 @@ namespace BluetoothLEExplorer.Models
         /// </summary>
         private void SetValue()
         {
+            
             if (data == null)
             {
                 Value = "NULL";
@@ -879,14 +885,19 @@ namespace BluetoothLEExplorer.Models
             {
                 try
                 {
+                    
                     Value = GattConvert.ToUTF8String(rawData);
                     if (Global.clearFlag == true)
                     {
                         tempString = "";
+                        Value = "";
                         Global.clearFlag = false;
+                        
                     }
+
                     else
                     {
+
                         tempString += Value;
                         Value = tempString;
                     }
@@ -894,25 +905,20 @@ namespace BluetoothLEExplorer.Models
                     {
                         tempString = "";
                     }
-                    
-                    /*
-                    if(dev.IsConnected == false)
-                    {
-                        Value = "DISCONNECTED";
-                    }
-                    */
+
 
                     
-                    
-                    
-                    
-                    
-                    
-                    
 
-                    
+
+
+
+
+
+
+
+
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     //Value = "Error: Invalid UTF8 String";
                 }

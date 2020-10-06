@@ -306,7 +306,17 @@ namespace BluetoothLEExplorer.ViewModels
             Views.Busy.SetBusy(true, "Connecting to " + SelectedDevice.Name);
 
             Debug.WriteLine("ConnectToSelectedDevice: Trying to connect to " + SelectedDevice.Name);
-
+            
+            if(selectedDevice.IsConnected == true)
+            {
+                Debug.WriteLine("ConnectToSelectedDevice: Going to Device Service Page");
+                Views.Busy.SetBusy(false);
+                GotoDeviceServicesPage();
+                Debug.WriteLine("ConnectToSelectedDevice: Exiting");
+                return;
+            }
+            
+     
             if (await SelectedDevice.Connect() == false)
             {
                 Debug.WriteLine("ConnectToSelectedDevice: Something went wrong getting the BluetoothLEDevice");
