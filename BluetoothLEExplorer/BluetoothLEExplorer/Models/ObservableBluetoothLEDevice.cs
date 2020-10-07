@@ -503,7 +503,9 @@ namespace BluetoothLEExplorer.Models
                 Debug.WriteLine(debugMsg + "In UI thread");
                 try
                 {
-                    
+
+            
+
                     if (BluetoothLEDevice == null)
                     {
                         Debug.WriteLine(debugMsg + "Calling BluetoothLEDevice.FromIdAsync");
@@ -546,7 +548,6 @@ namespace BluetoothLEExplorer.Models
 
                         result = await GetGattServicesAsyncTask.Result;
                         
-                        Services.Clear();
                         if (result.Status == GattCommunicationStatus.Success)
                         {
                             // In case we connected before, clear the service list and recreate it
@@ -602,6 +603,9 @@ namespace BluetoothLEExplorer.Models
             if (ret)
             {
                 Debug.WriteLine(debugMsg + "Exiting (0)");
+
+                
+
             }
             else
             {

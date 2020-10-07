@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BluetoothLEExplorer.Models;
+using BluetoothLEExplorer.Views;
+
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
@@ -53,6 +55,31 @@ namespace BluetoothLEExplorer.ViewModels
                 Set(ref deviceList, value);
             }
         }
+
+
+        private GattSampleContext context = GattSampleContext.Context;
+
+
+        private ObservableGattCharacteristics selectedCharacteristic;
+
+        /// <summary>
+        /// Gets or sets the currently selected characteristic
+        /// </summary>
+        public ObservableGattCharacteristics SelectedCharacteristic
+        {
+            get
+            {
+                return selectedCharacteristic;
+            }
+
+            set
+            {
+                Set(ref selectedCharacteristic, value, "SelectedCharacteristic");
+                context.SelectedCharacteristic = SelectedCharacteristic;
+                NavigationService.Navigate(typeof(CharacteristicPage));
+            }
+        }
+
 
         /// <summary>
         /// Source for <see cref="SelectedDevice"/>
@@ -278,6 +305,7 @@ namespace BluetoothLEExplorer.ViewModels
                     if (ShouldShow(dev) == false)
                     {
                         toRemove.Add(dev);
+                        
                     }
                 }
 
@@ -330,6 +358,9 @@ namespace BluetoothLEExplorer.ViewModels
             Views.Busy.SetBusy(false);
             GotoDeviceServicesPage();
             Debug.WriteLine("ConnectToSelectedDevice: Exiting");
+
+           
+
         }
 
         /// <summary>

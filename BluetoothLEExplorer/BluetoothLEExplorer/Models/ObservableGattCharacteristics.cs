@@ -52,6 +52,8 @@ namespace BluetoothLEExplorer.Models
         /// </summary>
         private IBuffer rawData;
         private String tempString;
+        private static bool prevFlag = false;
+        private String prevValue;
 
         /// <summary>
         /// byte array representation of the characteristic value
@@ -892,14 +894,27 @@ namespace BluetoothLEExplorer.Models
                         tempString = "";
                         Value = "";
                         Global.clearFlag = false;
+                        prevFlag = true;
                         
+                    }
+                    /*
+                    else if(Value == prevValue)
+                    {
+                        Value = tempString;
+                    }
+                    */
+                    else if(prevFlag == true && tempString.Length > 1)
+                    {
+                        tempString = "";
                     }
 
                     else
                     {
-
+                        //prevValue = Value;
                         tempString += Value;
                         Value = tempString;
+                        prevValue = tempString;
+                        prevFlag = false;
                     }
                     if(tempString.Length >= int.MaxValue - 100)
                     {
