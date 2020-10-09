@@ -339,7 +339,8 @@ namespace BluetoothLEExplorer.ViewModels
             {
                 Debug.WriteLine("ConnectToSelectedDevice: Going to Device Service Page");
                 Views.Busy.SetBusy(false);
-                GotoDeviceServicesPage();
+                //GotoDeviceServicesPage();
+                NavigationService.Navigate(typeof(Views.CharacteristicPage));
                 Debug.WriteLine("ConnectToSelectedDevice: Exiting");
                 return;
             }
