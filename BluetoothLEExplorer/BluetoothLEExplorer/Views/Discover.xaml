@@ -49,10 +49,10 @@
                 <x:Boolean>True</x:Boolean>
             </converters:ValueWhenConverter.When>
             <converters:ValueWhenConverter.Value>
-                <x:String>Stop</x:String>
+                <x:String>Stop Search</x:String>
             </converters:ValueWhenConverter.Value>
             <converters:ValueWhenConverter.Otherwise>
-                <x:String>Start</x:String>
+                <x:String>Search For Trackers</x:String>
             </converters:ValueWhenConverter.Otherwise>
         </converters:ValueWhenConverter>
 

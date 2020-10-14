@@ -792,12 +792,8 @@ namespace BluetoothLEExplorer.ViewModels
                 }
                 else if (WriteType == WriteTypes.UTF8)
                 {
-                    
-                    
                         writeBuffer = CryptographicBuffer.ConvertStringToBinary(ValueToWrite + 'X',
-                     BinaryStringEncoding.Utf8);
-                    
-                    
+                     BinaryStringEncoding.Utf8); 
                 }
 
                 try

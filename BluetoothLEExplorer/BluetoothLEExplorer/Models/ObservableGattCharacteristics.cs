@@ -897,20 +897,14 @@ namespace BluetoothLEExplorer.Models
                         prevFlag = true;
                         
                     }
-                    /*
-                    else if(Value == prevValue)
-                    {
-                        Value = tempString;
-                    }
-                    */
+                    
                     else if(prevFlag == true && tempString.Length > 1)
                     {
-                        tempString = "";
+                        tempString = ""; 
                     }
 
                     else
                     {
-                        //prevValue = Value;
                         tempString += Value;
                         Value = tempString;
                         prevValue = tempString;

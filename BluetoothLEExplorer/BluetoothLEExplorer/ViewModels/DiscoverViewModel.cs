@@ -324,7 +324,7 @@ namespace BluetoothLEExplorer.ViewModels
             }
         }
 
-        /// <summary>
+        /// <summary> 
         /// Connect to the currently selected service
         /// </summary>
         public async void ConnectToSelectedDevice()

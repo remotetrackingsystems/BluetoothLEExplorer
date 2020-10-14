@@ -54,7 +54,6 @@ namespace BluetoothLEExplorer.Views
             
             _console.Text = "";
             Global.clearFlag = true;
-            //Global.tempString = "";
             
         }
 
