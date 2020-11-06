@@ -217,6 +217,8 @@
                 <Button x:Name="WriteButton" Content="Send" Click="{x:Bind ViewModel.WriteValue}" Margin="5" RelativePanel.RightOf="WriteValue" />
                 <Button x:Name="ConfigButton" Content="Enter Config Mode" Click="{x:Bind ViewModel.WriteConfig}" Margin="5" RelativePanel.RightOf="WriteButton"   />
                 <Button x:Name="ClearButton" Content="Clear" Click="Clear_Click" Margin="5" RelativePanel.RightOf="ConfigButton"   />
+                <Button x:Name="UpdateButton" Content="Update" Click="Update_Click" Margin="5" RelativePanel.RightOf="ClearButton" Background="DarkRed"/>
+
                 <!--
                 <TextBlock x:Name="Disconnect" Text ="DISCONNECTED" Margin="5" VerticalAlignment="Center" Width="100" RelativePanel.RightOf="ClearButton" 
                 Visibility="{x:Bind Converter={StaticResource VisibleWhenFalseConverter}, Mode=OneWay, Path=ViewModel.IsCon}" />

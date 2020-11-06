@@ -57,6 +57,13 @@ namespace BluetoothLEExplorer.Views
             
         }
 
+        private void Update_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
+            
+
+        }
+
         /*
         private void Config_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
@@ -64,7 +71,7 @@ namespace BluetoothLEExplorer.Views
 
         }
         */
-        
+
 
         private void WriteValue_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
         {
